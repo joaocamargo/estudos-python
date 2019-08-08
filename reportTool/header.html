@@ -1,0 +1,33 @@
+
+<!doctype html>
+  <html>
+    <head>        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script>
+        function subst() {
+          
+          var vars={};
+          var x=document.location.search.substring(1).split('&');
+          for (var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+          var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+            for (var i in x) {
+                var y = document.getElementsByClassName(x[i]);
+                for (var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]]; 
+
+                //document.getElementById("teste").innerHTML = "testeaa";
+
+                if(vars['page'] > 1){
+                    document.getElementById("FakeHeaders").style.display = 'none';
+                }
+                else{          
+                    document.getElementById("FakeHeaders").style.display = 'block';
+                }
+            }
+        }
+        </script>
+    </head>
+    <body style="border:0;margin:0;" onload="subst()">
+        <span id="FakeHeaders">Relatório Novo - R20 - 516060</span>
+        <span id="teste"></span>
+    </body>
+</html>

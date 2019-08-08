@@ -1,0 +1,6 @@
+/python/reportTool/pdfs/*
+*.config
+/python/reportTool/generatedHtml/*
+python/reportTool/htmlCommon/discard/*
+
+
