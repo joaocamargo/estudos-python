@@ -1,6 +1,6 @@
-/python/reportTool/pdfs/*
+/reportTool/pdfs/*
 *.config
-/python/reportTool/generatedHtml/*
-python/reportTool/htmlCommon/discard/*
-
+/reportTool/generatedHtml/*
+/reportTool/htmlCommon/discard/*
+/euMesmoBot/conversas/*
 
