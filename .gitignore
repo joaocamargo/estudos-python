@@ -1,0 +1,6 @@
+/reportTool/pdfs/*
+*.config
+/reportTool/generatedHtml/*
+/reportTool/htmlCommon/discard/*
+/euMesmoBot/conversas/*
+/discovering_fraud_in_python/creditcard.csv

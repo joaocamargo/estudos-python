@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>{{ title }}</title>
+	
+	<style>
+		thead { display: table-header-group }
+		tfoot { display: table-row-group }
+		tr { page-break-inside: avoid }
+</style>
+ <script>
+        function subst() {
+          var vars={};
+          var x=document.location.search.substring(1).split('&');
+          for (var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+          var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+          for (var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for (var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+
+            if(vars['page'] == 1){ // If page is 1, set FakeHeaders display to none
+               document.getElementById("FakeHeaders").style.display = 'none';
+            }
+
+            if(vars['page'] == 3) { // If page is 3, set FakeHeaders display to none
+                document.getElementById("FakeHeaders").style.display = 'none';
+            }
+          }
+        }
+        </script>
+  </head>
+
+ <body style="border:0;margin:0;" onload="subst()">
+ <!-- <h2>Sales Funnel Report - National</h2> -->
+     <!-- {{ national_pivot_table }} -->
+<table class="table">
+    <thead>
+        <tr>			
+			{% for head in header %}
+            <th>{{head.nome}}</th>
+			{% endfor %}			
+        </tr>
+</thead>
+	<tbody>
+	{% for item in rows %}	       
+		<tr>			 
+			<td>{{item.DATAPAGAMENTO}}</td>
+			<td>{{item.PEDIDO}}</td>
+			<td>{{item.TIPO}}</td>					
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>			
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	{% endfor %}
+	</tbody>	
+</table> 
+</body>
+</html>
