@@ -19,8 +19,8 @@ def get_countries():
 
 def get_booking_page(session, offset, rooms, country, dest_id, DayIni, DayFim):
 
-    print('get_booking_page(session, offset, rooms, country, dest_id, DayIni, DayFim):')
-    print(session, offset, rooms, country, dest_id, DayIni, DayFim)
+    #print('get_booking_page(session, offset, rooms, country, dest_id, DayIni, DayFim):')
+    #print(session, offset, rooms, country, dest_id, DayIni, DayFim)
 
     diaInicial = str(int(DayIni[0:2]))
     mesInicial = str(int(DayIni[3:5]))
@@ -29,6 +29,9 @@ def get_booking_page(session, offset, rooms, country, dest_id, DayIni, DayFim):
     diaFinal = str(int(DayFim[0:2]))
     mesFinal = str(int(DayFim[3:5]))
     anoFinal = str(int(DayFim[6:10]))
+
+    print(diaInicial,mesInicial,anoInicial)
+    print(diaFinal,mesFinal,anoFinal)
 
     '''
     Make request to booking page and parse html
@@ -55,22 +58,24 @@ def get_booking_page(session, offset, rooms, country, dest_id, DayIni, DayFim):
     #             country=country.replace(' ', '+')
     #         ) + str(offset)
 
+    #'city=-1770407&checkin_year={anoInicial}&checkin_month={mesInicial}&checkin_monthday={diaInicial}&checkout_year={anoFinal}&checkout_month={mesFinal}&checkout_monthday={diaFinal}&group_adults=2&'\
+
     url = 'https://www.booking.com/searchresults.en-gb.html?'\
           'aid=304142&label=gen173nr-1DCAEoggJCAlhYSDNYBGiTAYgBAZgBLsIBCndpbmRvd3MgMTDIAQzYAQPoAQGSAgF5qAID&lang=en-gb&'\
           'sid=89ae7c6b6c6eb30c9bf7124b30548c75&sb=1&src=searchresults&'\
           'src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.en-gb.html%3Faid%3D304142%3Blabel%3Dgen173nr-1DCAEoggJCAlhYSDNYBGiTAYgBAZgBLsIBCndpbmRvd3MgMTDIAQzYAQPoAQGSAgF5qAID%3Bsid%3D89ae7c6b6c6eb30c9bf7124b30548c75%3Btmpl%3Dsearchresults%3B'\
-          'checkin_month%3D3%3Bcheckin_monthday%3D15%3Bcheckin_year%3D2020%3Bcheckout_month%3D3%3Bcheckout_monthday%3D19%3Bcheckout_year%3D2020%3B'\
+          'checkin_month%3D{mesInicial}%3Bcheckin_monthday%3D{diaInicial}%3Bcheckin_year%3D{anoInicial}%3Bcheckout_month%3D{mesFinal}%3Bcheckout_monthday%3D{diaFinal}%3Bcheckout_year%3D{anoFinal}%3B'\
           'class_interval%3D1%3Bdest_id%3D1804067%3Bdest_type%3Dhotel%3Bdtdisc%3D0%3Bfrom_sf%3D1%3Bgroup_adults%3D2%3Bgroup_children%3D0%3B'\
           'highlighted_hotels%3D1804067%3Binac%3D0%3Bindex_postcard%3D0%3Blabel_click%3Dundef%3Bno_rooms%3D2%3Boffset%3D0%3Bpostcard%3D0%3Broom1%3DA%3Broom2%3DA%3B'\
           'sb_price_type%3Dtotal%3Bsearch_pageview_id%3Df1b8635d8e6600d9%3Bshw_aparth%3D1%3Bslp_r_match%3D0%3Bsrc%3Dsearchresults%3Bsrc_elem%3Dsb%3Bsrpvid%3'\
           'Defa463d50fa90102%3Bss%3Dfewo1846%2520-%2520Parklick%3Bss_all%3D0%3Bssb%3Dempty%3Bsshis%3D0%3Bssne%3DGermany%3Bssne_untouched%3DGermany%3B'\
-          'top_ufis%3D1%26%3B&{country}&'\
-          'city=-1770407&checkin_year={anoInicial}&checkin_month={mesInicial}&checkin_monthday={diaInicial}&checkout_year={anoFinal}&checkout_month={mesFinal}&checkout_monthday={diaFinal}&group_adults=2&'\
-          'group_children=0&no_rooms=2&from_sf=1&search_pageview_id=efa463d50fa90102&ac_suggestion_list_length=6&ac_suggestion_theme_list_length=0&ac_position=0'\
+          'top_ufis%3D1%26%3B&{country}&nflt=roomfacility%3D38%3B&'\
+          'checkin_year={anoInicial}&checkin_month={mesInicial}&checkin_monthday={diaInicial}&checkout_year={anoFinal}&checkout_month={mesFinal}&checkout_monthday={diaFinal}'\
+          '&group_children=0&no_rooms={rooms}&from_sf=1&search_pageview_id=efa463d50fa90102&ac_suggestion_list_length=6&ac_suggestion_theme_list_length=0&ac_position=0'\
           '&ac_langcode=en&ac_click_type=b&dest_id={dest_id}&dest_type=city&iata=LON&'\
           'place_id_lat=51.507391&place_id_lon=-0.127634&search_pageview_id=efa463d50fa90102&search_selected=true&'\
-          '&nflt=roomfacility%3D38%3Breview_score%3D70%3Bpri%3D4%3Bpri%3D3%3Bpri%3D2%3Bpri%3D1%3B&'\
-          'ss_raw=londres&rows=15&offset='.format(rooms=rooms, country=country.replace(' ', '+'),anoFinal=anoFinal,mesFinal=mesFinal,diaInicial=diaInicial,mesInicial=mesInicial,anoInicial=anoInicial,diaFinal=diaFinal,dest_id=dest_id) + str(offset)
+          'nflt=roomfacility%3D38%3Breview_score%3D70%3Bpri%3D4%3Bpri%3D3%3Bpri%3D2%3Bpri%3D1%3B&'\
+          'ss_raw=londres&rows=1&offset='.format(rooms=rooms, country=country.replace(' ', '+'),anoFinal=anoFinal,mesFinal=mesFinal,diaInicial=diaInicial,mesInicial=mesInicial,anoInicial=anoInicial,diaFinal=diaFinal,dest_id=dest_id) + str(offset)
 
     r = requests.get(url, headers=
       {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0)'
@@ -89,7 +94,7 @@ def process_hotels(session, offset, rooms, country, dest_id, DayIni, DayFim):
         #print("ho.find('a', {'class': 'jq_tooltip'})")
         #print(ho.find('a', {'class': 'jq_tooltip'}))
         #name = ho.find('a', {'class': 'jq_tooltip'})['data-title']
-        print("ho.find('span', {'class': 'sr-hotel__name'})")
+        #print("ho.find('span', {'class': 'sr-hotel__name'})")
         #print(ho.find('span', {'class': 'sr-hotel__name'}))
 
         if ho.find('span', {'class': 'sr-hotel__name'}) is not None:
@@ -98,10 +103,19 @@ def process_hotels(session, offset, rooms, country, dest_id, DayIni, DayFim):
             name = '-1'
 
         if ho.find('div', {'class': 'bui-price-display__value prco-inline-block-maker-helper'}) is not None:
-            price = ho.find('div', {'class': 'bui-price-display__value prco-inline-block-maker-helper'}).text.replace('\n','').replace("b","").replace("'","")
+            price = str(ho.find('div', {'class': 'bui-price-display__value prco-inline-block-maker-helper'}).text).replace('\n','').replace("b","").replace("'","")            
         else:
             price = '-1'
 
+        
+        
+        if price == '-1':
+            if ho.find('span', {'class': 'bui-u-sr-only'}) is not None:
+                price = ho.find('span', {'class': 'bui-u-sr-only'}).text
+                print('entrou')
+
+        #print('--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+        #print('price',ho)
 
         if ho.find('div', {'class': 'bui-review-score__badge'}) is not None :
             nota = str(ho.find('div', {'class': 'bui-review-score__badge'}).text.replace('\n','').replace("b","").replace("'",""))
@@ -112,6 +126,12 @@ def process_hotels(session, offset, rooms, country, dest_id, DayIni, DayFim):
             distance = str(ho.find('span', {'title': 'This is the straight-line distance on the map. Actual travel distance may vary.'}).text.encode('utf-8')).replace('\\n','').replace("b","").replace("'","").replace('\\','')
         else :
             distance = '-1'
+
+        if ho.find('a', {'class': 'txp-cta bui-button bui-button--primary sr_cta_button'}) is not None:
+            url = 'www.booking.com'+ ho.find('a', {'class': 'txp-cta bui-button bui-button--primary sr_cta_button'})['href']
+        else:
+            url = '-1'
+        
 
         # if ho.find('a', {'class': 'bui-link'}) is not None :
         #     result = [str(item) for item in ho.find_all('span', attrs={'data-bui-component' : 'Tooltip'})]
@@ -136,7 +156,7 @@ def process_hotels(session, offset, rooms, country, dest_id, DayIni, DayFim):
         #     distance = '---'
 
 
-        hotels.append(DayIni+';'+DayFim+';'+name + ';' + price + ';' + nota + ';' + distance)
+        hotels.append(DayIni+';'+DayFim+';'+name + ';' + price + ';' + nota + ';' + distance+';'+url)
         #hotels.append(str(len(hotels) + 1) + ' : ' + name + ' : ' + price)
 
 
@@ -150,8 +170,7 @@ def prep_data(rooms=1, country='Macedonia', dest_id='-1', DayIni='01/01/2019', D
     session = requests.Session()
 
     parsed_html = get_booking_page(session, offset, rooms, country, dest_id, DayIni,DayFim)
-    all_offset = parsed_html.find_all('li', {'class':
-                                      'sr_pagination_item'})[-1].get_text().splitlines()[-1]
+    all_offset = parsed_html.find_all('li', {'class':'sr_pagination_item'})[-1].get_text().splitlines()[-1]
     threads = []
     for i in range(int(all_offset)):
         offset += 1
@@ -235,9 +254,21 @@ if __name__ == "__main__":
         'Pais': 'Buzios',
         'dest_id': '-626254'
     }, {
-        'Pais': '',
-        'dest_id': ''
+        'Pais': 'Munich',
+        'dest_id': '-1829149'
+    },
+    {
+        'Pais': 'Veneza',
+        'dest_id': '-132007'
+    },{
+        'Pais': 'Zurich',
+        'dest_id': '-2554935'
+    },{
+        'Pais': 'Lucerna',
+        'dest_id': '-2552994'
     }]
+
+    
 
     countryAux = [d['Pais'] for d in localidades if args.dest_id in d['dest_id']]
     if len(countryAux)>0:
