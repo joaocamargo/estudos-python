@@ -266,7 +266,23 @@ if __name__ == "__main__":
     },{
         'Pais': 'Lucerna',
         'dest_id': '-2552994'
+    },{
+        'Pais': 'Lugano',
+        'dest_id': '-2552969'
+    },{
+        'Pais': 'Berna',
+        'dest_id': '-2551235'
+    },{
+        'Pais': 'Interlaken',
+        'dest_id': '-2552548'
+    },{
+        'Pais': 'Lucerna',
+        'dest_id': '-2552994'
+    },{
+        'Pais': 'Lucerna',
+        'dest_id': '-2552994'
     }]
+
 
     
 
